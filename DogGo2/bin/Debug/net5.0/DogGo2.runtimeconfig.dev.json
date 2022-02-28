@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\grass\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\grass\\.nuget\\packages"
+    ]
+  }
+}

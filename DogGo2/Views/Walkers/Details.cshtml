@@ -1,0 +1,68 @@
+﻿@model DogGo2.Models.ViewModels.WalkersViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Walker Profile</h1>
+
+<div>
+    
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Walker.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Walker.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Walker.Neighborhood)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Walker.Neighborhood.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            <img class="bg-info" src="@Model.Walker.ImageUrl" alt="avatar" />
+        </dt>
+       
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<div class="row">
+    <section class="col-8 container mt-5">
+      <h1 class="text-left">Walks</h1>
+
+      <table class="table">
+          <thead>
+              <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Client</th>
+                  <th scope="col">Duration</th>
+              </tr>
+          </thead>
+          <tbody>
+      
+          @foreach (Walks walk in Model.Walks)
+            {
+                <tr>
+                    <td>@walk.Date.ToShortDateString()</td>
+                    <td>@walk.Dog.Owner.Name</td>
+                    <td>@TimeSpan.FromSeconds(walk.Duration) min</td>
+                </tr>          
+            }
+            </tbody>
+
+      </table>
+    </section>
+
+    <section>
+        <h1>Totalk Walk Time : @TimeSpan.FromSeconds(Model.Walks.Sum(walk => walk.Duration))</h1>
+    </section>
+
+
+</div>
